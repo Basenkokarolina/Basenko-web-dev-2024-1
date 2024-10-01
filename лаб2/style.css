@@ -1,0 +1,152 @@
+header{
+    background-color: rgb(212, 212, 114);
+    color: black;
+    font-size: 1.5rem;
+    font-weight: medium;
+    padding: 20px 0;
+}
+
+.main-menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu li{
+    display: inline;
+    margin-right: 10px;
+}
+.text{
+  margin: 0 auto;
+  max-width: 90%;
+  font-size: 1.1rem;
+}
+html, body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.info{
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.main-menu a{
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.main-menu .active{
+    color: tomato;
+}
+
+.main-menu a:hover{
+    color: palevioletred;
+}
+
+.image{
+    padding-top: 20px;
+    height: 450px;
+    width: 200px;
+    text-align: left;
+    margin: 0;
+}
+
+.image > img{
+    height: 100%;
+}
+
+footer {
+    background-color: rgb(212, 212, 114);
+    color: black;
+    padding: 20px 0;
+}
+
+
+p{
+    text-align: left;
+    margin: 0;
+}
+
+section{
+    margin-bottom: 20px;
+}
+
+th,td{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+table{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.advantages ul{
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Merriweather", system-ui;
+  }
+
+  @media all and (max-width: 800px) {
+
+    nav {
+        justify-content: space-between;
+    }
+
+    .image > img {
+        width: 500px
+    }
+
+}
+
+@media all and (max-width: 600px) {
+
+    .info{
+        text-align: center;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-menu a {
+        font-size: calc(22px + 4px);
+    }
+
+    .image > img {
+        width: 100%;
+    }
+
+    table {
+        font-size: calc(15px - 2px);
+    }
+
+}
+
+@media all and (max-width: 400px) {
+
+    table {
+        font-size: calc(15px - 4px);
+    }
+}

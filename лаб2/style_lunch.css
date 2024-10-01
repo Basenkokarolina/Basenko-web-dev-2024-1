@@ -1,0 +1,90 @@
+section{
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.food-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin: 30px 0px;
+}
+
+.every-dish{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 40px;
+    border-radius: 35px;
+    cursor: pointer;
+    filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+    background-color: white;
+}
+
+.every-dish:hover{
+    border: 2px solid tomato;
+}
+
+.every-dish img{
+    width: 100%;
+    border-radius: 35px;
+}
+
+.every-dish .price{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.every-dish .name {
+    font-size: 18px;
+    margin: 8px 0 10px 0;
+    font-weight: 500;
+}
+
+.every-dish .weight {
+    color: grey;
+    margin: 10px 0px;
+}
+
+.every-dish .plus {
+    margin-top: auto;
+    width: 100%;
+}
+
+.every-dish button {
+    width: 100%;
+    background-color: #f1eee9;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.every-dish:hover button {
+    background-color: gold;
+}
+
+@media all and (max-width: 800px) {
+
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media all and (max-width: 600px) {
+
+    .info {
+        text-align: center;
+    }
+
+    section h2 {
+        text-align: center;
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+}
