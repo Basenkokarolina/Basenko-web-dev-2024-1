@@ -149,4 +149,12 @@ table{
     table {
         font-size: calc(15px - 4px);
     }
+
+    select, input[type="text"], input[type="email"], input[type="tel"], input[type="time"], textarea{
+        width: 100%;
+    }
+
+    .button{
+        width: 100%;
+    }
 }

@@ -13,6 +13,7 @@ section{
 .every-dish{
     display: flex;
     flex-direction: column;
+    border: 2px solid transparent;
     align-items: flex-start;
     padding: 30px 40px;
     border-radius: 35px;
@@ -94,6 +95,7 @@ h3 {
 }
 
 select, input[type="text"], input[type="email"], input[type="tel"], input[type="time"], textarea{
+    min-width: 200px;
     width: 80%;
     padding: 8px;
     margin-bottom: 15px;
@@ -197,6 +199,10 @@ button:hover {
     }
 
     .food-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .form {
         grid-template-columns: repeat(1, 1fr);
     }
     
