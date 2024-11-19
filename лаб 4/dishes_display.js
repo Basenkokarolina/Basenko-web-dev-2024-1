@@ -1,34 +1,49 @@
-function dishes_display() {
-    const dishesSorted = dishes.sort((a, b) => 
-        a.name.localeCompare(b.name)); 
-    /* массив dishes сортируется в алфавитном порядке по названию блюд */
-    let foodGrid = document.querySelectorAll('.food-grid');
-    /*  находим элементы с классом .food-grid 
-        и сохраняем их в переменной foodGrid */
-    dishesSorted .forEach(dish =>{ /* cоздание карточек для блюд*/
-        let dishCard = document.createElement('div');
-        dishCard.classList.add('every-dish');
-        dishCard.setAttribute('data-dish', dish.keyword);
-
-        dishCard.innerHTML = `
-            <img src="${dish.image}" alt="${dish.name}">
-            <p class="price">${dish.price}&#x20bd;</p>
-            <p class="name">${dish.name}</p>
-            <div class="plus">
-                <p class="weight">${dish.count}</p>
-                <button class="add-button">Добавить</button>
-            </div>
-        `;
-
-        if (dish.category === 'soup') { /*размещение блюд в нужной секции*/
-            foodGrid[0].append(dishCard);
-        } else if (dish.category === 'main-dish') {
-            foodGrid[1].append(dishCard);
-        } else if (dish.category === 'drink') {
-            foodGrid[2].append(dishCard);
-        }
-    });
-    setupAddButtons();
+function sortMenuItems(items) {
+    return items.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-dishes_display();
+function getCategoryGrid(category, grids) {
+    const categoryMapping = {
+        soup: 0,
+        main_dish: 1,
+        drink: 2
+    };
+
+    return grids[categoryMapping[category]];
+}
+
+function createMenuItemCard(item) {
+    const card = document.createElement("div");
+    card.classList.add("every-dish");
+    card.setAttribute("data-dish", item.keyword);
+
+    card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <p class="price">${item.price}&#x20bd;</p>
+        <p class="name">${item.name}</p>
+        <div class="plus">
+            <p class="weight">${item.count}</p>
+            <button class="add-button">Добавить</button>
+        </div>
+    `;
+
+    return card;
+}
+
+function displayMenu() {
+    const sortedMenuItems = sortMenuItems(dishes);
+    const gridContainers = document.querySelectorAll(".food-grid");
+
+    sortedMenuItems.forEach(item => {
+        const menuCard = createMenuItemCard(item);
+        const grid = getCategoryGrid(item.category, gridContainers);
+        
+        if (grid) {
+            grid.append(menuCard);
+        }
+    });
+
+}
+
+displayMenu();
+initializeAddButtons();

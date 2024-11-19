@@ -27,7 +27,7 @@ const dishes = [
         keyword: 'friedpotatoeswithmushrooms',
         name: 'Жареная картошка с грибами',
         price: 150,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '250 г',
         image: 'images2/main/friedpotatoeswithmushrooms1.jpg'
     },
@@ -35,7 +35,7 @@ const dishes = [
         keyword: 'lasagna',
         name: 'Лазанья',
         price: 385,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '310 г',
         image: 'images2/main/lasagna.jpg'
     },
@@ -43,7 +43,7 @@ const dishes = [
         keyword: 'chickencutletsandmashedpotatoes',
         name: 'Котлеты из курицы с картофельным пюре',
         price: 225,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '280 г',
         image: 'images2/main/chickencutletsandmashedpotatoes.jpg'
     },

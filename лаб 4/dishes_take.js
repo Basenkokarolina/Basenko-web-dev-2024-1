@@ -1,89 +1,94 @@
-function getDishesCategory(keyword) {
+function fetchDishCategory(keyword) {
     for (const dish of dishes) {
         if (dish.keyword === keyword) {
             return dish.category;
         }
     }
-    return undefined;
+    return null; 
 }
 
-function getDishesPrice(keyword) {
+function fetchDishPrice(keyword) {
     for (const dish of dishes) {
         if (dish.keyword === keyword) {
             return dish.price;
         }
     }
-    return undefined;
+    return null; 
 }
 
-function updateTotal() {
-    let allItems = document.querySelectorAll(".every-dish");
-    let totalSum = 0;
-    allItems.forEach(item => {
-        if (item.classList.contains("selected")) {
-            totalSum += getDishesPrice(item.getAttribute("data-dish"));
+function recalculateTotal() {
+    let selectedDishes = document.querySelectorAll(".every-dish");
+    let totalAmount = 0;
+    
+    selectedDishes.forEach(dish => {
+        if (dish.classList.contains("selected")) {
+            totalAmount += fetchDishPrice(dish.getAttribute("data-dish"));
         }
     });
-    console.log(totalSum);
-    let orderCoast = document.querySelector(".order-item-coast");
-    orderCoast.innerHTML = `
-    <p><b>Стоимость заказа</b></p>
-    <p class="coast">${totalSum}&#x20bd;</p>
+
+    let totalDisplay = document.querySelector(".order-item-coast");
+    totalDisplay.innerHTML = `
+        <p><b>Стоимость заказа</b></p>
+        <p class="coast">${totalAmount}&#x20bd;</p>
     `;
 }
 
-function addToOrder(dish) {
-    let orderItemsNot = document.querySelector(".order-items-not");
-    let orderItems = document.querySelector(".order-items");
-    orderItemsNot.style.display = "none";
-    orderItems.style.display = "block";
+function appendDishToOrder(dish) {
+    let orderEmptyState = document.querySelector(".order-items-not");
+    let orderFullState = document.querySelector(".order-items");
+    orderEmptyState.style.display = "none";
+    orderFullState.style.display = "block";
 
-    if (dish.category === "soup") {
-        let orderCategory = document.querySelector(".order-item-soup");
-        orderCategory.innerHTML = `
-        <p><b>Суп</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-soup");
-        inputForm.value = dish.keyword;
+    let orderCategory;
+    let inputForm;
 
-    } else if (dish.category === "main-dish") {
-        let orderCategory = document.querySelector(".order-item-main-dish");
-        orderCategory.innerHTML = `
-        <p><b>Главное блюдо</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-main-dish");
-        inputForm.value = dish.keyword;
-    } else if (dish.category === "drink") {
-        let orderCategory = document.querySelector(".order-item-drink");
-        orderCategory.innerHTML = `
-        <p><b>Напиток</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-drink");
-        inputForm.value = dish.keyword;
+    const categoryMapping = {
+        "soup": { selector: ".order-item-soup", 
+            inputId: "input-soup", rusName: "Суп" },
+        "main_dish": { selector: ".order-item-main-dish",
+            inputId: "input-main-dish", rusName: "Основное блюдо" },
+        "drink": { selector: ".order-item-drink", 
+            inputId: "input-drink", rusName: "Напиток" }
+    };
+    
+    const categoryInfo = categoryMapping[dish.category];
+    
+    if (categoryInfo) {
+        orderCategory = document.querySelector(categoryInfo.selector);
+        inputForm = document.getElementById(categoryInfo.inputId);
+    } else {
+        return;
     }
+    
+    
+    orderCategory.innerHTML = `
+        <p><b>${categoryInfo.rusName}</b></p>
+        <p>${dish.name} ${dish.price}&#x20bd;</p>
+    `;
+    inputForm.value = dish.keyword;
 
     document.querySelectorAll(".every-dish").forEach(item => {
-        if (getDishesCategory(item.getAttribute("data-dish"))
-             === dish.category) {
+        if (fetchDishCategory(item.getAttribute("data-dish")) 
+            === dish.category) {
             item.classList.remove("selected");
         }
     });
-    document.querySelector(`[data-dish="${dish.keyword}"]`)
-        .classList.add("selected");
 
-    updateTotal();
+    document.querySelector(`
+        [data-dish="${dish.keyword}"]`).classList.add("selected");
+
+    recalculateTotal();
 }
 
-function setupAddButtons() {
+function initializeAddButtons() {
     document.querySelectorAll(".add-button").forEach(button => {
-        button.addEventListener("click", event => {
+        button.addEventListener("click", (event) => {
             const dishKeyword = 
             event.target.closest(".every-dish").getAttribute("data-dish");
             const dish = dishes.find(d => d.keyword === dishKeyword);
-            addToOrder(dish);
+            appendDishToOrder(dish);
         });
     });
 }
+
+
