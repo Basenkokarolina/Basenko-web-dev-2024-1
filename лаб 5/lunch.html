@@ -24,10 +24,10 @@
     <main>
         <section>
             <h2>Выберите суп</h2>
-            <div class="category_items" id="buttons_soup">
-                <button class="category_item" data-kind="fish">рыбный</button>
-                <button class="category_item" data-kind="meat">мясной</button>
-                <button class="category_item" data-kind="veg">вегетарианский</button>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбный</button>
+                <button class="filter-button" data-kind="meat">мясной</button>
+                <button class="filter-button" data-kind="veg">вегетарианский</button>
             </div>
             <div class="food-grid">
             </div>
@@ -35,10 +35,10 @@
 
         <section>
             <h2>Выберите главное блюдо</h2>
-            <div class="category_items" id="buttons_main">
-                <button class="category_item" data-kind="fish">рыбное</button>
-                <button class="category_item" data-kind="meat">мясное</button>
-                <button class="category_item" data-kind="veg">вегетарианское</button>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбное</button>
+                <button class="filter-button" data-kind="meat">мясное</button>
+                <button class="filter-button" data-kind="veg">вегетарианское</button>
             </div>
             <div class="food-grid">
             </div>
@@ -46,10 +46,10 @@
 
         <section>
             <h2>Выберите салат или стартер</h2>
-            <div class="category_items" id="buttons_salad">
-                <button class="category_item" data-kind="fish">рыбный</button>
-                <button class="category_item" data-kind="meat">мясной</button>
-                <button class="category_item" data-kind="veg">вегетарианский</button>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбный</button>
+                <button class="filter-button" data-kind="meat">мясной</button>
+                <button class="filter-button" data-kind="veg">вегетарианский</button>
             </div>
             <div class="food-grid">
             </div>
@@ -57,25 +57,25 @@
 
         <section>
             <h2>Выберите напиток</h2>
-            <div class="category_items" id="buttons_drink">
-                <button class="category_item" data-kind="cold">холодный</button>
-                <button class="category_item" data-kind="hot">горячий</button>
+            <div class="filters">
+                <button class="filter-button" data-kind="hot">горячий</button>
+                <button class="filter-button" data-kind="cold">холодный</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+
+        <section>
+            <h2>Выберите десерт</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="small">маленькая порция</button>
+                <button class="filter-button" data-kind="medium">средняя порция</button>
+                <button class="filter-button" data-kind="large">большая порция</button>
             </div>
             <div class="food-grid">
             </div>
         </section>
     </main>
-
-    <section>
-        <h2>Выберите десерт</h2>
-        <div class="category_items" id="buttons_dessert">
-            <button class="category_item" data-kind="small">маленькая порция</button>
-            <button class="category_item" data-kind="medium">средняя порция</button>
-            <button class="category_item" data-kind="large">большая порция</button>
-        </div>
-        <div class="food-grid">
-        </div>
-    </section>
 
     <div class="take-order">
         <h2 class="order">Сделать заказ</h2>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="order-item-salad">
                             <p><b>Салат или стартер</b></p>
-                            <p>Салат или стартер не выбран</p>
+                            <p>Блюдо не выбрано</p>
                         </div>
                         <div class="order-item-drink">
                             <p><b>Напиток</b></p>
@@ -179,7 +179,7 @@
                             </div>
                     </fieldset>
 
-                    <div class="buttons">
+                    <div class="button">
                         <button type="reset">Сбросить</button>
                         <button type="submit">Отправить</button>
                     </div>

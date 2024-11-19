@@ -57,7 +57,7 @@ const dishes = [
         keyword: 'friedpotatoeswithmushrooms',
         name: 'Жареная картошка с грибами',
         price: 150,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '250 г',
         image: 'images2/main/friedpotatoeswithmushrooms1.jpg',
         kind: "veg"
@@ -66,7 +66,7 @@ const dishes = [
         keyword: 'lasagna',
         name: 'Лазанья',
         price: 385,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '310 г',
         image: 'images2/main/lasagna.jpg',
         kind: "meat"
@@ -75,7 +75,7 @@ const dishes = [
         keyword: 'chickencutletsandmashedpotatoes',
         name: 'Котлеты из курицы с картофельным пюре',
         price: 225,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '280 г',
         image: 'images2/main/chickencutletsandmashedpotatoes.jpg',
         kind: "meat"
@@ -84,7 +84,7 @@ const dishes = [
         keyword: 'fishcutletwithriceandasparagus',
         name: 'Рыбная котлета с рисом и спаржей',
         price: 320,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '270 г',
         image: 'menu/main_course/fishrice.jpg',
         kind: "fish"
@@ -93,7 +93,7 @@ const dishes = [
         keyword: 'pizzamargarita',
         name: 'Пицца Маргарита',
         price: 450,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '470 г',
         image: 'menu/main_course/pizza.jpg',
         kind: "veg"
@@ -102,7 +102,7 @@ const dishes = [
         keyword: 'shrimppasta',
         name: 'Паста с креветками',
         price: 340,
-        category: 'main-dish',
+        category: 'main_dish',
         count: '280 г',
         image: 'menu/main_course/shrimppasta.jpg',
         kind: "fish"

@@ -1,172 +1,129 @@
-function getDishesCategory(keyword) {
+function fetchDishCategory(keyword) {
     for (const dish of dishes) {
         if (dish.keyword === keyword) {
             return dish.category;
         }
     }
-    return undefined;
+    return null; 
 }
 
-function getDishesPrice(keyword) {
+function fetchDishPrice(keyword) {
     for (const dish of dishes) {
         if (dish.keyword === keyword) {
             return dish.price;
         }
     }
-    return undefined;
+    return null; 
 }
 
-function updateTotal() {
-    let allItems = document.querySelectorAll(".every-dish");
-    let totalSum = 0;
-    allItems.forEach(item => {
-        if (item.classList.contains("selected")) {
-            totalSum += getDishesPrice(item.getAttribute("data-dish"));
+function initializeFilters() {
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const filterKind = button.getAttribute("data-kind");
+            const section = button.closest("section");
+            const foodGrid = section.querySelector(".food-grid");
+            const dishes = foodGrid.querySelectorAll(".every-dish");
+
+            if (button.classList.contains("active")) {
+                button.classList.remove("active");
+                dishes.forEach(dish => (dish.style.display = "flex"));
+            } else {
+                section.querySelectorAll(".filter-button").forEach(btn =>
+                    btn.classList.remove("active"));
+
+                button.classList.add("active");
+
+                dishes.forEach(dish => {
+                    if (dish.getAttribute("data-kind") === filterKind) {
+                        dish.style.display = "flex";
+                    } else {
+                        dish.style.display = "none";
+                    }
+                });
+            }
+        });
+    });
+}
+
+function recalculateTotal() {
+    let selectedDishes = document.querySelectorAll(".every-dish");
+    let totalAmount = 0;
+    
+    selectedDishes.forEach(dish => {
+        if (dish.classList.contains("selected")) {
+            totalAmount += fetchDishPrice(dish.getAttribute("data-dish"));
         }
     });
-    console.log(totalSum);
-    let orderCoast = document.querySelector(".order-item-coast");
-    orderCoast.innerHTML = `
-    <p><b>Стоимость заказа</b></p>
-    <p class="coast">${totalSum}&#x20bd;</p>
+
+    let totalDisplay = document.querySelector(".order-item-coast");
+    totalDisplay.innerHTML = `
+        <p><b>Стоимость заказа</b></p>
+        <p class="coast">${totalAmount}&#x20bd;</p>
     `;
 }
 
-function addToOrder(dish) {
-    let orderItemsNot = document.querySelector(".order-items-not");
-    let orderItems = document.querySelector(".order-items");
-    orderItemsNot.style.display = "none";
-    orderItems.style.display = "block";
+function appendDishToOrder(dish) {
+    let orderEmptyState = document.querySelector(".order-items-not");
+    let orderFullState = document.querySelector(".order-items");
+    orderEmptyState.style.display = "none";
+    orderFullState.style.display = "block";
 
-    if (dish.category === "soup") {
-        let orderCategory = document.querySelector(".order-item-soup");
-        orderCategory.innerHTML = `
-        <p><b>Суп</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-soup");
-        inputForm.value = dish.keyword;
+    let orderCategory;
+    let inputForm;
 
-    } else if (dish.category === "main-dish") {
-        let orderCategory = document.querySelector(".order-item-main-dish");
-        orderCategory.innerHTML = `
-        <p><b>Главное блюдо</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-main-dish");
-        inputForm.value = dish.keyword;
-
-    } else if (dish.category === "salad") {
-        let orderCategory = document.querySelector(".order-item-salad");
-        orderCategory.innerHTML = `
-        <p><b>Салат или стартер</b></p>
-        <p>${dish.name} ${dish.price}₽</p>
-        `;
-        let inputForm = document.getElementById("input-salad");
-        inputForm.value = dish.keyword;
-
-    } else if (dish.category === "drink") {
-        let orderCategory = document.querySelector(".order-item-drink");
-        orderCategory.innerHTML = `
-        <p><b>Напиток</b></p>
-        <p>${dish.name} ${dish.price}&#x20bd;</p>
-        `;
-        let inputForm = document.getElementById("input-drink");
-        inputForm.value = dish.keyword;
-
-    } else if (dish.category === "dessert") {
-        let orderCategory = document.querySelector(".order-item-dessert");
-        orderCategory.innerHTML = `
-        <p><b>Десерт</b></p>
-        <p>${dish.name} ${dish.price}₽</p>
-        `;
-        let inputForm = document.getElementById("input-dessert");
-        inputForm.value = dish.keyword;
+    const categoryMapping = {
+        "soup": { selector: ".order-item-soup",
+            inputId: "input-soup", rusName: "Суп" },
+        "main_dish": { selector: ".order-item-main-dish",
+            inputId: "input-main-dish", rusName: "Основное блюдо" },
+        "drink": { selector: ".order-item-drink",
+            inputId: "input-drink", rusName: "Напиток" },
+        "salad": { selector: ".order-item-salad", 
+            inputId: "input-salad", rusName: "Салат или стартер" },
+        "dessert": { selector: ".order-item-dessert", 
+            inputId: "input-dessert", rusName: "Десерт" }
+    };
+    
+    const categoryInfo = categoryMapping[dish.category];
+    
+    if (categoryInfo) {
+        orderCategory = document.querySelector(categoryInfo.selector);
+        inputForm = document.getElementById(categoryInfo.inputId);
+    } else {
+        return;
     }
+    
+    
+    orderCategory.innerHTML = `
+        <p><b>${categoryInfo.rusName}</b></p>
+        <p>${dish.name} ${dish.price}&#x20bd;</p>
+    `;
+    inputForm.value = dish.keyword;
 
     document.querySelectorAll(".every-dish").forEach(item => {
-        if (getDishesCategory(item.getAttribute("data-dish"))
-             === dish.category) {
+        if (fetchDishCategory(item.getAttribute("data-dish")) 
+            === dish.category) {
             item.classList.remove("selected");
         }
     });
-    document.querySelector(`[data-dish="${dish.keyword}"]`)
-        .classList.add("selected");
 
-    updateTotal();
+    document.querySelector(`
+        [data-dish="${dish.keyword}"]`).classList.add("selected");
+
+    recalculateTotal();
 }
 
-function removeActiveClassFromButtons(buttons) {
-    buttons.forEach(button => {
-        button.classList.remove("active");
-    });
-}
-function sortFoodItems(foodGrid, kind) {
-    let foodItems = foodGrid.querySelectorAll(".every-dish");
-    foodItems.forEach(foodItem => {
-        let keyword = foodItem.getAttribute("data-dish");
-        dishes.forEach((dish) => {
-            if (dish.keyword === keyword) {
-                if (dish.kind !== kind) {
-                    foodItem.style.display = "none";
-                }
-            }
-        });
-    });
-}
-
-function unSortFoodItems(foodGrid) {
-    let foodItems = foodGrid.querySelectorAll(".every-dish");
-    foodItems.forEach(foodItem => {
-        foodItem.style.display = "flex";
-    });
-}
-
-function listenerCategoryButtons(categoryButtons, foodGrids) {
-    categoryButtons.forEach((button) => {
-        button.addEventListener("click", event => {
-            if (button.classList.contains("active")) {
-                button.classList.remove("active");
-                unSortFoodItems(foodGrids);
-
-            } else {
-                removeActiveClassFromButtons(categoryButtons);
-                button.classList.add("active");
-                unSortFoodItems(foodGrids);
-                sortFoodItems(foodGrids,
-                    button.getAttribute("data-kind"));
-            }
-        });
-    });
-}
-
-function setupCategoryButtons() {
-    let foodGrids = document.querySelectorAll(".food-grid");
-    let categoryButtonsSoup = document.getElementById("buttons_soup")
-        .querySelectorAll(".category_item");
-    let categoryButtonsMain = document.getElementById("buttons_main")
-        .querySelectorAll(".category_item");
-    let categoryButtonsSalad = document.getElementById("buttons_salad")
-        .querySelectorAll(".category_item");
-    let categoryButtonsBeverages = document.getElementById("buttons_drink")
-        .querySelectorAll(".category_item");
-    let categoryButtonsDessert = document.getElementById("buttons_dessert")
-        .querySelectorAll(".category_item");
-    listenerCategoryButtons(categoryButtonsSoup, foodGrids[0]);
-    listenerCategoryButtons(categoryButtonsMain, foodGrids[1]);
-    listenerCategoryButtons(categoryButtonsSalad, foodGrids[2]);
-    listenerCategoryButtons(categoryButtonsBeverages, foodGrids[3]);
-    listenerCategoryButtons(categoryButtonsDessert, foodGrids[4]);
-}
-
-function setupAddButtons() {
+function initializeAddButtons() {
     document.querySelectorAll(".add-button").forEach(button => {
-        button.addEventListener("click", event => {
+        button.addEventListener("click", (event) => {
             const dishKeyword = 
             event.target.closest(".every-dish").getAttribute("data-dish");
             const dish = dishes.find(d => d.keyword === dishKeyword);
-            addToOrder(dish);
+            appendDishToOrder(dish);
         });
     });
-    setupCategoryButtons();
 }
+
+

@@ -3,6 +3,28 @@ section{
     margin: 0 auto;
 }
 
+.filter-button {
+    all: unset;
+    font-size: 14pt;
+    font-weight: 500;
+    padding: 7px 10px;
+    margin: 5px;
+    background-color: white;
+    color: green;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-button.active {
+    background-color: #d1e7dd;
+    color: #155724;
+}
+
+.filter-button:hover {
+    background-color: #d1e7dd;
+    color: #155724;
+}
+
 .food-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -69,34 +91,6 @@ section{
 .every-dish.selected {
     border: 2px solid tomato;
 }
-
-.category_items {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.category_item {
-    display: block;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    background-color: white;
-    color: #63a56f;
-    font-size: 1.2em;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.category_item:hover {
-    background-color: #d2eedb;
-}
-
-.category_item.active {
-    background-color: #d2eedb;
-}
-
 
 .order {
     text-align: center;
@@ -214,14 +208,14 @@ input[type="checkbox"], input[type="radio"] {
     margin-right: 3px;
 }
 
-.buttons {
+.button {
     width: 80%;
     gap: 10px;
     display: flex;
     justify-content: center;
 }
 
-.buttons button {
+button {
     width: 50%;
     padding: 10px 20px;
     border: none;
@@ -231,7 +225,7 @@ input[type="checkbox"], input[type="radio"] {
     cursor: pointer;
 }
 
-.buttons button:hover {
+button:hover {
     background-color: gold;
     border-color: tomato;
 }
