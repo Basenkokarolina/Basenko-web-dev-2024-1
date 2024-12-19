@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel = "stylesheet" href="style_lunch.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_orders.css">
+  <title>Food Construct</title>
+</head>
+<body>
+<header>
+  <div class="info">
+    <h1>Food Construct</h1>
+  </div>
+  <div class="text">
+    <nav class="main-menu">
+      <a href="index.html">О нас</a>
+      <a href="lunch.html">Cобрать ланч</a>
+      <a href="new_order.html">Оформить заказ</a>
+      <a href="orders.html" class="active">Заказы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>История заказов</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>№</th>
+        <th>Дата оформления</th>
+        <th>Состав заказа</th>
+        <th>Стоимость</th>
+        <th>Время доставки</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody class="orders">
+      </tbody>
+    </table>
+  </section>
+</main>
+<!-- Модальное окно: Просмотр заказа -->
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Просмотр заказа</h2>
+      <span class="close" onclick="closeModal('modalView')">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p><strong>Дата оформления:</strong> 23.11.2024 20:01</p>
+      <h3>Доставка</h3>
+      <p><strong>Имя получателя:</strong> Иванов Иван Иванович</p>
+      <p><strong>Адрес доставки:</strong> г. Москва, ул. Большая Семёновская, 38</p>
+      <p><strong>Время доставки:</strong> 21:00</p>
+      <p><strong>Телефон:</strong> +74952230523</p>
+      <p><strong>Email:</strong> example@mospolytech.ru</p>
+      <h3>Комментарий</h3>
+      <p>Позвонить от поста охраны.</p>
+      <h3>Состав заказа</h3>
+      <p>Основное блюдо: Жареная картошка с грибами (150Р)</p>
+      <p>Напиток: Зелёный чай (100Р)</p>
+      <p>Десерт: Чизкейк (240Р)</p>
+      <p><strong>Стоимость:</strong> 490Р</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalView')">ОК</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Модальное окно: Удаление заказа -->
+<div id="modalDelete" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Удаление заказа</h2>
+      <span class="close" onclick="closeModal('modalDelete')">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>Вы уверены, что хотите удалить заказ?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalDelete')">Отмена</button>
+      <button class="btn-danger">Да</button>
+    </div>
+  </div>
+</div>
+
+<footer id="contacts">
+  <div class="text">
+    <p>
+      Позвонить нам <a style="color: black;" href="+7-000-000-00-00">+7-000-000-00-00</a>
+    </p>
+  </div>
+</footer>
+
+<script type="module" src="orders.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="style_lunch.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Food Construct</title>
+</head>
+<body>
+    <header>
+        <div class="info">
+            <h1>Food Construct</h1>
+        </div>
+        <div class="text">
+            <nav class="main-menu">
+                    <a href="index.html">О нас</a>
+                    <a href="lunch.html" class="active">Cобрать ланч</a>
+                    <a href="new_order.html">Оформить заказ</a>
+                    <a href="orders.html">Заказы</a>
+                    <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="choose-combo">
+            <h2 class="combo-title">Доступные для заказа комбо</h2>
+            <div class="lunch-options-grid">
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/soup.png" alt="soup">
+                        <p>Суп</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/main.png" alt="main-dish">
+                        <p>Главное блюдо</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/salad.png" alt="salad">
+                        <p>Салат</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/drink.png" alt="drink">
+                        <p>Напиток</p>
+                    </div>
+                </div>
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/soup.png" alt="soup">
+                        <p>Суп</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/main.png" alt="main-dish">
+                        <p>Главное блюдо</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/drink.png" alt="drink">
+                        <p>Напиток</p>
+                    </div>
+                </div>
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/soup.png" alt="soup">
+                        <p>Суп</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/salad.png" alt="salad">
+                        <p>Салат</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/drink.png" alt="drink">
+                        <p>Напиток</p>
+                    </div>
+                </div>
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/main.png" alt="main-dish">
+                        <p>Главное блюдо</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/salad.png" alt="salad">
+                        <p>Салат</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/drink.png" alt="drink">
+                        <p>Напиток</p>
+                    </div>
+                </div>
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/main.png" alt="main-dish">
+                        <p>Главное блюдо</p>
+                    </div>
+                    <div class="lunch-option-flex">
+                        <img src="icons/drink.png" alt="drink">
+                        <p>Напиток</p>
+                    </div>
+                </div>
+                <div class="lunch-option">
+                    <div class="lunch-option-flex">
+                        <img src="icons/desert.png" alt="desert">
+                        <p>Десерт</p>
+                        <div class="desert-info">(Можно добавить к любому заказу)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <h2>Выберите суп</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбный</button>
+                <button class="filter-button" data-kind="meat">мясной</button>
+                <button class="filter-button" data-kind="veg">вегетарианский</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+
+        <section>
+            <h2>Выберите главное блюдо</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбное</button>
+                <button class="filter-button" data-kind="meat">мясное</button>
+                <button class="filter-button" data-kind="veg">вегетарианское</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+
+        <section>
+            <h2>Выберите салат или стартер</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="fish">рыбный</button>
+                <button class="filter-button" data-kind="meat">мясной</button>
+                <button class="filter-button" data-kind="veg">вегетарианский</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+
+        <section>
+            <h2>Выберите напиток</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="hot">горячий</button>
+                <button class="filter-button" data-kind="cold">холодный</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+
+        <section>
+            <h2>Выберите десерт</h2>
+            <div class="filters">
+                <button class="filter-button" data-kind="small">маленькая порция</button>
+                <button class="filter-button" data-kind="medium">средняя порция</button>
+                <button class="filter-button" data-kind="large">большая порция</button>
+            </div>
+            <div class="food-grid">
+            </div>
+        </section>
+    </main>
+    <label for="input-soup"></label>
+    <input type="text" id="input-soup" name="soup_id" value="" hidden>
+
+    <label for="input-main-dish"></label>
+    <input type="text" id="input-main-dish" name="main_course_id" value="" hidden>
+
+    <label for="input-drink"></label>
+    <input type="text" id="input-drink" name="drink_id" value="" hidden>
+
+    <label for="input-salad"></label>
+    <input type="text" id="input-salad" name="salad_id" value="" hidden>
+
+    <label for="input-dessert"></label>
+    <input type="text" id="input-dessert" name="dessert_id" value="" hidden>
+    <div class="order-summary">
+        <div class="total">
+            Итого: <span id="total-price">220₽</span>
+        </div>
+        <a href="new_order.html" class="checkout-btn">Оформить заказ</a>
+    </div>
+    <footer id="contacts">
+        <div class="text">
+            <p>
+                Позвонить нам <a style="color: black;" href="+7-000-000-00-00">+7-000-000-00-00</a>
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="dishes_take.js"></script>
+    <script src="dishes.js"></script>
+    <script src="dishes_display.js"></script>
+    <script src="loadDishes.js"></script>
+</body>
+</html>
